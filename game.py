@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys
+from sys import argv
 from printer import my_print
 
 def num_digits(n):
@@ -30,13 +30,16 @@ def print_hist(i, n, max_val):
     print_header(i, max_val)
 
     # I need this stupid case because of line wrapping
-    if (n > 50):
+    if (n > 150):
         my_print(n)
         return
    
     for i in range(n):
         my_print('x', e = '')
-    my_print(' -- ' + str(n))
+    if (i > 0):
+        my_print(' -- ' + str(n))
+    else:
+    	my_print('0')
 
 def pattern(n):
     max_val = 0
@@ -77,10 +80,10 @@ def print_usage():
     my_print("         num  - either the max value for frequency mode or the value to display for one mode")
 
 
-if (len(sys.argv) <= 2):
+if (len(argv) <= 2):
     print_usage()
 else:
-    ops = sys.argv[1:]
+    ops = argv[1:]
     if (ops[0] == "freq"):
         pattern(int(ops[1]))
     elif (ops[0] == "one"):
