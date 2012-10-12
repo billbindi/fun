@@ -21,7 +21,7 @@ def game_count(n):
 
 def print_header(i, n):
     for k in range(num_digits(n) - num_digits(i)):
-        print('', end = '')
+        print(' ', end = '')
     print(str(i) + ": ", end = '')
 
 
