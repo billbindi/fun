@@ -8,17 +8,21 @@ def num_digits(n):
         return 1
     return 1 + num_digits(n//10)
 
-def game_count(n):
+def is_even(n):
+    return not n & 1
+
+def game_build(n):
+    lis = []
     if (n <= 0):
-        return 0
-    count = 1
+        return lis
     while (n != 1):
-        count += 1
-        if (n % 2 == 0):
+        lis.append(int(n))
+        if (is_even == 0):
             n /= 2
         else:
             n = 3*n + 1
-    return count
+    lis.append(1)
+    return lis
 
 def print_header(i, n):
     for k in range(num_digits(n) - num_digits(i)):
@@ -44,32 +48,20 @@ def print_hist(i, n, max_val):
 def pattern(n):
     max_val = 0
     for i in range(n):
-        pos = game_count(i)
+        pos = len(game_build(i))
         print_hist(i, pos, n - 1)
         if (pos > max_val):
             max_val = pos
     my_print('')
     my_print("max: " + str(max_val))
 
-def game_build(n):
-    if (n <= 0):
-        return False
-    lis = []
-    while (n != 1):
-        lis.append(int(n))
-        if (n % 2 == 0):
-            n /= 2
-        else:
-            n = 3*n + 1
-    lis.append(1)
-    return lis
-
 def game(n):
     lis = game_build(n)
     steps = len(lis)
-    for i in range(steps):
-        print_header(i + 1, steps)
-        my_print(lis[i])
+    if (steps > 0):
+        for i in range(steps):
+            print_header(i + 1, steps)
+            my_print(lis[i])
 
 
 def print_usage():
