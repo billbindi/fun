@@ -35,11 +35,17 @@ def print_hist(i, n, max_val):
    
     for i in range(n):
         print 'x',
-    print ''
+    print ' --- ' + str(n)
 
 def pattern(n):
+    max_val = 0
     for i in range(n):
-        print_hist(i, game_count(i), n - 1)
+        pos = game_count(i)
+        print_hist(i, pos, n - 1)
+        if (pos > max_val):
+            max_val = pos
+    print "\n\n\n"
+    print "max: " + str(max_val)
 
 
 
