@@ -47,10 +47,42 @@ def pattern(n):
     print("\n\n\n")
     print("max: " + str(max_val))
 
+def game_build(n):
+    if (n <= 0):
+        return False
+    lis = []
+    while (n != 1):
+        lis.append(n)
+        if (n % 2 == 0):
+            n /= 2
+        else:
+            n = 3*n + 1
+    lis.append(1)
+    return lis
+
+def game(n):
+    lis = game_build(n)
+    steps = len(lis)
+    for i in range(steps):
+        print_header(i + 1, steps)
+        print(lis[i])
 
 
-if (len(sys.argv) > 1):
-    pattern(int(sys.argv[1]))
+def print_usage():
+    print("Usage for the 3n + 1 game")
+    print("         python <file> <type> <num>\n")
+    print("         file - {game.py | game27.py}, game.py for python versions 3 and above, else game27.py")
+    print("         type - {freq | one}, frequency will show hitogram data of the number of steps taken for 1 - num, one will just run it once and show the steps needed for num")
+    print("         num  - either the max value for frequency mode or the value to display for one mode")
+
+
+if (len(sys.argv) <= 2):
+    print_usage()
 else:
-    pattern(100)
-
+    ops = sys.argv[1:]
+    if (ops[0] == "freq"):
+        pattern(int(ops[1]))
+    elif (ops[0] == "one"):
+        game(int(ops[1]))
+    else:
+        print_usage()
