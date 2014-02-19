@@ -9,7 +9,7 @@ def num_digits(n):
     return 1 + num_digits(n//10)
 
 def is_even(n):
-    return not n & 1
+    return not int(n) & 1
 
 def game_build(n):
     lis = []
@@ -17,7 +17,7 @@ def game_build(n):
         return lis
     while (n != 1):
         lis.append(int(n))
-        if (is_even == 0):
+        if (is_even(n)):
             n /= 2
         else:
             n = 3*n + 1
@@ -38,7 +38,7 @@ def print_hist(i, n, max_val):
         my_print(n)
         return
    
-    for i in range(n):
+    for k in range(n):
         my_print('x', e = '')
     if (i > 0):
         my_print(' -- ' + str(n))
@@ -66,8 +66,7 @@ def game(n):
 
 def print_usage():
     my_print("Usage for the 3n + 1 game")
-    my_print("         python <file> <type> <num>\n")
-    my_print("         file - {game.py | game27.py}, game.py for python versions 3 and above, else game27.py")
+    my_print("         python game.py <type> <num>\n")
     my_print("         type - {freq | one}, frequency will show hitogram data of the number of steps taken for 1 - num, one will just run it once and show the steps needed for num")
     my_print("         num  - either the max value for frequency mode or the value to display for one mode")
 
